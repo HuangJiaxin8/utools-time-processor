@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日期时间处理工具</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Tab 导航 -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="date-calc">日期加减</button>
+      <button class="tab-btn" data-tab="lunar">农历转换</button>
+      <button class="tab-btn" data-tab="date-diff">日期间隔</button>
+      <button class="tab-btn" data-tab="timezone">时区转换</button>
+      <button class="tab-btn" data-tab="timestamp">时间戳</button>
+      <button class="tab-btn" data-tab="time-period">时间段</button>
+    </div>
+
+    <!-- Tab 内容区 -->
+    <div class="tab-content">
+      <!-- 1. 日期加减 -->
+      <div class="tab-panel active" id="date-calc">
+        <h3>日期加减计算</h3>
+        <label>基准日期：<input type="date" id="base-date"></label>
+        <label>加减天数：<input type="number" id="days-offset" value="0"></label>
+        <button onclick="calculateDate()">计算</button>
+        <div class="result" id="date-calc-result"></div>
+      </div>
+
+      <!-- 2. 农历转换 -->
+      <div class="tab-panel" id="lunar">
+        <h3>农历国历互查</h3>
+        <div class="lunar-direction">
+          <button class="lunar-dir-btn active" data-dir="solar-to-lunar">国历 → 农历</button>
+          <button class="lunar-dir-btn" data-dir="lunar-to-solar">农历 → 国历</button>
+        </div>
+
+        <!-- 国历转农历 -->
+        <div id="solar-to-lunar-panel">
+          <label>选择公历日期：<input type="date" id="lunar-date"></label>
+          <button onclick="convertSolarToLunar()">查询农历信息</button>
+        </div>
+
+        <!-- 农历转国历 -->
+        <div id="lunar-to-solar-panel" style="display: none;">
+          <label>农历年份：<input type="number" id="lunar-year" min="1900" max="2100" value="2024"></label>
+          <label>农历月份：<input type="number" id="lunar-month" min="1" max="12" value="1"></label>
+          <label>农历日期：<input type="number" id="lunar-day" min="1" max="30" value="1"></label>
+          <label><input type="checkbox" id="lunar-leap"> 闰月</label>
+          <button onclick="convertLunarToSolar()">转换为公历</button>
+        </div>
+
+        <div class="result" id="lunar-result"></div>
+      </div>
+
+      <!-- 3. 日期间隔 -->
+      <div class="tab-panel" id="date-diff">
+        <h3>日期间隔计算</h3>
+        <label>开始日期：<input type="date" id="diff-start"></label>
+        <label>结束日期：<input type="date" id="diff-end"></label>
+        <button onclick="calculateDiff()">计算</button>
+        <div class="result" id="diff-result"></div>
+      </div>
+
+      <!-- 4. 时区转换 -->
+      <div class="tab-panel" id="timezone">
+        <h3>全球时区转换</h3>
+        <label>源时区：<select id="source-timezone"></select></label>
+        <label>日期时间：<input type="datetime-local" id="timezone-datetime"></label>
+        <label>目标时区：<select id="target-timezone"></select></label>
+        <button onclick="convertTimezone()">转换</button>
+        <div class="result" id="timezone-result"></div>
+      </div>
+
+      <!-- 5. 时间戳转换 -->
+      <div class="tab-panel" id="timestamp">
+        <h3>Unix 时间戳转换</h3>
+        <div class="ts-direction">
+          <button class="ts-dir-btn active" data-dir="to-date">时间戳 → 日期</button>
+          <button class="ts-dir-btn" data-dir="to-ts">日期 → 时间戳</button>
+        </div>
+        <label id="ts-input-label">时间戳（秒）：<input type="text" id="ts-input" placeholder="例如：1640995200"></label>
+        <label><input type="checkbox" id="ts-ms"> 毫秒级时间戳</label>
+        <div class="ts-buttons">
+          <button onclick="convertTimestamp()">转换</button>
+          <button onclick="getCurrentTimestamp()">获取当前时间戳</button>
+        </div>
+        <div class="result" id="timestamp-result"></div>
+      </div>
+
+      <!-- 6. 时间段处理 -->
+      <div class="tab-panel" id="time-period">
+        <h3>最早/晚打卡时间</h3>
+        <label>输入时间段（每行一个，格式 YYYY-MM-DD HH:MM:SS）：</label>
+        <textarea id="time-input" rows="10" placeholder="2024-01-15 08:30:00&#10;2024-01-15 09:00:00&#10;..."></textarea>
+        <div class="button-group">
+          <button onclick="findEarliestTime()">找出最早打卡时间</button>
+          <button onclick="findLatestTime()">找出最晚打卡时间</button>
+        </div>
+        <div class="output-section">
+          <label>输出结果：</label>
+          <textarea id="time-output" rows="5" readonly></textarea>
+          <button onclick="copyResult()">复制结果</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/lunar.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

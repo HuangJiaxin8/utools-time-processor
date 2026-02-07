@@ -1,0 +1,461 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* Tab 导航 */
+.tabs {
+  display: flex;
+  background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+  border-bottom: 1px solid #e8e8e8;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.tabs::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.tabs::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.tab-btn {
+  padding: 16px 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #5a5c68;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  position: relative;
+}
+
+.tab-btn:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.08);
+}
+
+.tab-btn.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  background: white;
+  font-weight: 600;
+}
+
+/* Tab 内容区 */
+.tab-content {
+  padding: 32px;
+  background: #ffffff;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.tab-panel h3 {
+  margin-bottom: 24px;
+  color: #1a1c23;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.tab-panel h3::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 22px;
+  background: linear-gradient(to bottom, #667eea, #764ba2);
+  border-radius: 2px;
+  margin-right: 12px;
+}
+
+/* 表单元素 */
+label {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: #4a4d56;
+  font-weight: 500;
+}
+
+label input[type="date"],
+label input[type="number"],
+label input[type="text"],
+label input[type="datetime-local"],
+label select {
+  display: block;
+  margin-top: 8px;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #1a1c23;
+  transition: all 0.3s;
+  width: 100%;
+  background: #f9fafb;
+}
+
+label input:hover,
+label select:hover {
+  border-color: #d1d5db;
+  background: white;
+}
+
+label input:focus,
+label select:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+label input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+label textarea {
+  margin-top: 8px;
+}
+
+/* 按钮 */
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 12px;
+  margin-top: 12px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* 方向切换按钮组 */
+.ts-direction,
+.lunar-direction {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.ts-dir-btn,
+.lunar-dir-btn {
+  flex: 1;
+  padding: 10px 24px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.ts-dir-btn:hover,
+.lunar-dir-btn:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  transform: none;
+  box-shadow: none;
+}
+
+.ts-dir-btn.active,
+.lunar-dir-btn.active {
+  background: white;
+  color: #667eea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 按钮组 */
+.button-group {
+  margin: 20px auto;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button-group button {
+  margin: 0;
+}
+
+/* 结果显示 */
+.result {
+  margin-top: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf3 100%);
+  border-radius: 12px;
+  font-size: 15px;
+  color: #2d3748;
+  min-height: 60px;
+  word-break: break-all;
+  border: 2px solid #e5e7eb;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-family: "SF Mono", "Monaco", "Consolas", monospace;
+}
+
+.result:empty::before {
+  content: "✨ 计算结果将显示在这里";
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* 文本区域 */
+textarea {
+  font-family: "SF Mono", "Monaco", "Consolas", "Courier New", monospace;
+  resize: vertical;
+  min-height: 120px;
+  padding: 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  transition: all 0.3s;
+  background: #f9fafb;
+}
+
+textarea:hover {
+  border-color: #d1d5db;
+  background: white;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+#time-input {
+  min-height: 250px;
+}
+
+#time-output {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-color: #86efac;
+  color: #166534;
+  font-weight: 500;
+}
+
+/* 输出区域样式 */
+.output-section {
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 12px;
+  border: 2px solid #86efac;
+}
+
+.output-section label {
+  font-weight: 600;
+  color: #166534;
+  margin-bottom: 12px;
+}
+
+.output-section textarea {
+  background: white;
+  border-color: #86efac;
+  color: #166534;
+  margin-bottom: 12px;
+}
+
+.output-section button {
+  width: 100%;
+  margin: 0;
+}
+
+/* 时间戳按钮组 */
+.ts-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: fit-content;
+}
+
+.ts-buttons button {
+  margin: 0;
+}
+
+/* 时间段处理页面特别优化 */
+#time-period h3 {
+  margin-bottom: 28px;
+}
+
+#time-period label {
+  font-weight: 600;
+  color: #374151;
+}
+
+#time-period .button-group {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+#time-period .button-group button {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+#time-period .button-group button:hover {
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+/* 主要操作按钮突出显示 */
+.tab-panel button[onclick*="convert"],
+.tab-panel button[onclick*="calculate"],
+.tab-panel button[onclick*="find"] {
+  min-width: 120px;
+}
+
+/* 复制按钮特殊样式 */
+button[onclick="copyResult()"] {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+button[onclick="copyResult()"]:hover {
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* select 下拉框样式优化 */
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    border-radius: 12px;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+  }
+
+  .tab-btn {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .tab-content {
+    padding: 20px;
+  }
+
+  .tab-panel h3 {
+    font-size: 18px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group button {
+    width: 100%;
+    margin: 4px 0;
+  }
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #667eea, #764ba2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #5a6fd8, #6a4190);
+}

@@ -1,0 +1,37 @@
+{
+  "main": "index.html",
+  "logo": "logo.png",
+  "preload": "preload.js",
+  "features": [
+    {
+      "code": "date-calc",
+      "explain": "日期加减计算",
+      "cmds": ["日期加减", "date"]
+    },
+    {
+      "code": "lunar-convert",
+      "explain": "农历国历双向转换",
+      "cmds": ["农历转换", "lunar"]
+    },
+    {
+      "code": "date-diff",
+      "explain": "日期间隔计算",
+      "cmds": ["日期间隔", "datediff"]
+    },
+    {
+      "code": "timezone",
+      "explain": "全球时区转换",
+      "cmds": ["时区转换", "timezone"]
+    },
+    {
+      "code": "timestamp",
+      "explain": "Unix时间戳转换",
+      "cmds": ["时间戳", "timestamp"]
+    },
+    {
+      "code": "time-period",
+      "explain": "时间段处理（打卡时间）",
+      "cmds": ["时间段", "打卡时间"]
+    }
+  ]
+}
